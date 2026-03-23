@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEPA Auction Platform - Responsive Design Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            screens: {
+                'xs': '475px',
+                'sm': '640px',
+                'md': '768px',
+                'lg': '1024px',
+                'xl': '1280px',
+                '2xl': '1536px',
+            },
+            theme: {
+                extend: {
+                    colors: {
+                        background: 'rgb(var(--color-background))',
+                        foreground: 'rgb(var(--color-foreground))',
+                        muted: {
+                            DEFAULT: 'rgb(var(--color-muted))',
+                            foreground: 'rgb(var(--color-muted-foreground))',
+                        },
+                        card: {
+                            DEFAULT: 'rgb(var(--color-card))',
+                            foreground: 'rgb(var(--color-card-foreground))',
+                        },
+                        border: 'rgb(var(--color-border))',
+                        primary: {
+                            DEFAULT: 'rgb(var(--color-primary))',
+                            foreground: 'rgb(var(--color-primary-foreground))',
+                        },
+                        secondary: {
+                            DEFAULT: 'rgb(var(--color-secondary))',
+                            foreground: 'rgb(var(--color-secondary-foreground))',
+                        },
+                        ring: 'rgb(var(--color-ring))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-background: 255 255 255;
+            --color-foreground: 15 23 42;
+            --color-muted: 241 245 249;
+            --color-muted-foreground: 100 116 139;
+            --color-card: 255 255 255;
+            --color-card-foreground: 15 23 42;
+            --color-border: 226 232 240;
+            --color-primary: 59 130 246;
+            --color-primary-foreground: 255 255 255;
+            --color-secondary: 241 245 249;
+            --color-secondary-foreground: 15 23 42;
+            --color-ring: 59 130 246;
+        }
+
+        .dark {
+            --color-background: 15 23 42;
+            --color-foreground: 248 250 252;
+            --color-muted: 30 41 59;
+            --color-muted-foreground: 148 163 184;
+            --color-card: 30 41 59;
+            --color-card-foreground: 248 250 252;
+            --color-border: 51 65 85;
+            --color-primary: 59 130 246;
+            --color-primary-foreground: 255 255 255;
+            --color-secondary: 30 41 59;
+            --color-secondary-foreground: 248 250 252;
+            --color-ring: 59 130 246;
+        }
+
+        /* Line clamping utilities */
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+            
+            button, a, input, textarea, select {
+                min-height: 44px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+                line-height: 1.2;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            
+            h3 {
+                font-size: 1.25rem;
+                line-height: 1.4;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+    <!-- Header -->
+    <header class="border-b border-border bg-card sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <h1 class="text-xl sm:text-2xl font-bold text-foreground">NEPA Auction Platform</h1>
+                <nav class="flex gap-2 sm:gap-4">
+                    <button class="px-3 sm:px-4 py-2 text-sm sm:text-base font-medium text-muted-foreground hover:text-foreground transition-colors">
+                        Dashboard
+                    </button>
+                    <button class="px-3 sm:px-4 py-2 text-sm sm:text-base font-medium text-muted-foreground hover:text-foreground transition-colors">
+                        My Bids
+                    </button>
+                    <button class="px-3 sm:px-4 py-2 text-sm sm:text-base font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
+                        Profile
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6 sm:py-8">
+        <!-- Stats Section -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-card border border-border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-muted-foreground mb-1">Active Auctions</h3>
+                <p class="text-2xl font-bold text-foreground">6</p>
+            </div>
+            <div class="bg-card border border-border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-muted-foreground mb-1">Total Value</h3>
+                <p class="text-2xl font-bold text-foreground">$1,425</p>
+            </div>
+            <div class="bg-card border border-border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-muted-foreground mb-1">Ending Soon</h3>
+                <p class="text-2xl font-bold text-foreground">3</p>
+            </div>
+            <div class="bg-card border border-border rounded-lg p-4">
+                <h3 class="text-sm font-medium text-muted-foreground mb-1">Categories</h3>
+                <p class="text-2xl font-bold text-foreground">3</p>
+            </div>
+        </section>
+
+        <!-- Auctions Section -->
+        <section class="w-full">
+            <div class="mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-4">Active Auctions</h2>
+                
+                <!-- Category Filter -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button class="px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-primary text-primary-foreground">
+                        All
+                    </button>
+                    <button class="px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                        Electricity
+                    </button>
+                    <button class="px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                        Water
+                    </button>
+                    <button class="px-3 sm:px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                        Gas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Responsive Grid Layout -->
+            <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Auction Card 1 -->
+                <article class="bg-card border border-border rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop" 
+                             alt="Electricity Package" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-semibold text-card-foreground mb-2 line-clamp-2">
+                            Premium Electricity Package - 1000kWh
+                        </h3>
+                        
+                        <p class="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-3">
+                            High-quality electricity allocation for residential use. Perfect for households with high energy consumption needs.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Current Bid</span>
+                                <span class="text-lg sm:text-xl font-bold text-primary">$150</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Time Left</span>
+                                <span class="text-sm font-medium text-foreground">5d left</span>
+                            </div>
+                            
+                            <button class="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm sm:text-base font-medium">
+                                Place Bid
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Auction Card 2 -->
+                <article class="bg-card border border-border rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548484352-ea579e5233a8?w=400&h=300&fit=crop" 
+                             alt="Water Allocation" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-semibold text-card-foreground mb-2 line-clamp-2">
+                            Water Allocation - 5000 Gallons
+                        </h3>
+                        
+                        <p class="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-3">
+                            Clean water allocation for industrial or commercial use. Includes delivery and storage options.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Current Bid</span>
+                                <span class="text-lg sm:text-xl font-bold text-primary">$75</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Time Left</span>
+                                <span class="text-sm font-medium text-foreground">3d left</span>
+                            </div>
+                            
+                            <button class="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm sm:text-base font-medium">
+                                Place Bid
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Auction Card 3 -->
+                <article class="bg-card border border-border rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606094626221-aed2e10a4a67?w=400&h=300&fit=crop" 
+                             alt="Natural Gas Package" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-semibold text-card-foreground mb-2 line-clamp-2">
+                            Natural Gas Package - 1000 Therms
+                        </h3>
+                        
+                        <p class="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-3">
+                            Premium natural gas allocation for heating and industrial applications. Competitive pricing with flexible delivery.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Current Bid</span>
+                                <span class="text-lg sm:text-xl font-bold text-primary">$200</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Time Left</span>
+                                <span class="text-sm font-medium text-foreground">7d left</span>
+                            </div>
+                            
+                            <button class="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm sm:text-base font-medium">
+                                Place Bid
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Auction Card 4 -->
+                <article class="bg-card border border-border rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=300&fit=crop" 
+                             alt="Solar Energy Credits" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-semibold text-card-foreground mb-2 line-clamp-2">
+                            Solar Energy Credits - 500 kWh
+                        </h3>
+                        
+                        <p class="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-3">
+                            Renewable energy credits from solar installations. Environmentally friendly option with tax benefits.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Current Bid</span>
+                                <span class="text-lg sm:text-xl font-bold text-primary">$125</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Time Left</span>
+                                <span class="text-sm font-medium text-destructive">2d left</span>
+                            </div>
+                            
+                            <button class="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm sm:text-base font-medium">
+                                Place Bid
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Auction Card 5 -->
+                <article class="bg-card border border-border rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" 
+                             alt="Emergency Water Supply" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-semibold text-card-foreground mb-2 line-clamp-2">
+                            Emergency Water Supply - 2000 Gallons
+                        </h3>
+                        
+                        <p class="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-3">
+                            Emergency water supply for critical infrastructure. Includes rapid deployment and 24/7 support.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Current Bid</span>
+                                <span class="text-lg sm:text-xl font-bold text-primary">$300</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Time Left</span>
+                                <span class="text-sm font-medium text-destructive">1d left</span>
+                            </div>
+                            
+                            <button class="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm sm:text-base font-medium">
+                                Place Bid
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Auction Card 6 -->
+                <article class="bg-card border border-border rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-48 bg-gray-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?w=400&h=300&fit=crop" 
+                             alt="Industrial Gas Bundle" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-semibold text-card-foreground mb-2 line-clamp-2">
+                            Industrial Gas Bundle - 2000 Therms
+                        </h3>
+                        
+                        <p class="text-sm sm:text-base text-muted-foreground mb-4 line-clamp-3">
+                            Bulk natural gas package for industrial operations. Volume discounts available for long-term contracts.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Current Bid</span>
+                                <span class="text-lg sm:text-xl font-bold text-primary">$450</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-muted-foreground">Time Left</span>
+                                <span class="text-sm font-medium text-foreground">10d left</span>
+                            </div>
+                            
+                            <button class="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors duration-200 text-sm sm:text-base font-medium">
+                                Place Bid
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-card mt-12">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-muted-foreground text-sm text-center sm:text-left">
+                    © 2024 NEPA Platform. All rights reserved.
+                </p>
+                <div class="flex gap-4 text-sm">
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors">
+                        Terms
+                    </a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors">
+                        Privacy
+                    </a>
+                    <a href="#" class="text-muted-foreground hover:text-foreground transition-colors">
+                        Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filter functionality
+            const categoryButtons = document.querySelectorAll('section > div > div.flex button');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active state from all buttons
+                    categoryButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-primary-foreground');
+                        btn.classList.add('bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80');
+                    });
+                    
+                    // Add active state to clicked button
+                    this.classList.remove('bg-secondary', 'text-secondary-foreground', 'hover:bg-secondary/80');
+                    this.classList.add('bg-primary', 'text-primary-foreground');
+                });
+            });
+
+            // Bid button functionality
+            const bidButtons = document.querySelectorAll('button[class*="Place Bid"]');
+            bidButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const cardTitle = this.closest('article').querySelector('h3').textContent;
+                    alert(`Bid placed for: ${cardTitle}`);
+                });
+            });
+
+            // Responsive testing helper
+            function showBreakpoint() {
+                const width = window.innerWidth;
+                let breakpoint = 'xs';
+                if (width >= 1536) breakpoint = '2xl';
+                else if (width >= 1280) breakpoint = 'xl';
+                else if (width >= 1024) breakpoint = 'lg';
+                else if (width >= 768) breakpoint = 'md';
+                else if (width >= 640) breakpoint = 'sm';
+                else if (width >= 475) breakpoint = 'xs';
+                
+                console.log(`Current breakpoint: ${breakpoint} (${width}px)`);
+            }
+
+            window.addEventListener('resize', showBreakpoint);
+            showBreakpoint(); // Show on load
+        });
+    </script>
+</body>
+</html>
